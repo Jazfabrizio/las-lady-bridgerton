@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/temporadas_sheet.css">
+    <link rel="stylesheet" type="text/css" href="/static/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+</head>
+
+<main>
+    <body>
+
+        <header role="banner">
+            <h1>Bridgerton</h1>
+          </header>
+            
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid" >
+              <a class="navbar-brand" href="#"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+            
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                   <a class="nav-link" href="iniciarsesion.html">Iniciar sesión</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/historia">Personajes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/temporadas.html">Temporadas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="whistledown.html">Whistledown Online</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </nav>
+
+
+    
+        <div id="Capitulo"> </div>
+       
+  
+
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="/static/slick/slick.min.js"></script>
+        <script src="/static/js/java_script.js"></script>
+        <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+        <script>
+          function response_recieved(response){
+            return response.json()
+          }
+
+          function parse_data(content){
+            console.log(content)
+            const capitulo = document.getElementById("Capitulo");
+            for (let index =0; index <content.length; index++){
+                const item = document.createElement("h4");
+                item.innerText = content[index].name;
+                const desc = document.createElement("p");
+                desc.innerText = content[index].desc;
+               
+                capitulo.append(item);
+                capitulo.append(desc);
+            }
+
+
+
+
+          }
+          
+          function request_error(error) {
+            console.log("error")
+            console.log(error);
+          }
+
+          fetch("http://localhost:5000/temporadas/capitulos")
+            .then(response_recieved)
+            .then(parse_data)
+            .catch(request_error)
+
+        </script>
+
+
+
+    </body>
+    <footer>
+        <button>
+            <a href="index.html"> Volver a inicio </a>
+        </button>
+    </footer>
+</main>

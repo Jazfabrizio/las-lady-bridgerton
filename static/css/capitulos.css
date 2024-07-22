@@ -1,0 +1,9 @@
+figcaption {
+    display:none; 
+    transition: all .5s;
+  }
+  
+  figure:hover > figcaption {
+    display:block;
+    transition: all .5s;
+  }

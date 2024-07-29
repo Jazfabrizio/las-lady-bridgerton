@@ -26,7 +26,8 @@ def personaje():
                 'description' : personaje.description,
                 'temp_aparicion' : personaje.temp_id,
                 'title' : personaje.title,
-                'partners' : personaje.partners
+                'partners' : personaje.partners,
+                'img': personaje.img
             }
             personajes_data.append(personaje_info)
         return jsonify(personajes_data)
@@ -43,7 +44,8 @@ def personaje_by_id(id):
             'description': personaje.description,
             'temp_id': personaje.temp_id,
             'title': personaje.title,
-            'partners': personaje.partners
+            'partners': personaje.partners,
+            'img': personaje.img
         }
         return jsonify(personaje_dict)
     except:
@@ -70,15 +72,16 @@ def agregar_personaje():
         temp_id = data.get('temp_id')
         title = data.get('title')
         partners = data.get('partners')
+        img = data.get('img')
 
         personaje_existente = Personajes.query.filter_by(name=name).first()
         if personaje_existente:
             return jsonify({'mensaje': 'Personaje con este nombre ya existe'}), 409
         
-        nuevo_personaje = Personajes(name=name, description=description, temp_id=temp_id, title=title, partners=partners)
+        nuevo_personaje = Personajes(name=name, description=description, temp_id=temp_id, title=title, partners=partners, img=img)
         db.session.add(nuevo_personaje)
         db.session.commit()
-        return jsonify({'personaje': {'id': nuevo_personaje.id, 'name': nuevo_personaje.name, 'description': nuevo_personaje.description, 'temp_id': nuevo_personaje.temp_id, 'title': nuevo_personaje.title, 'partners': nuevo_personaje.partners}}), 201
+        return jsonify({'personaje': {'id': nuevo_personaje.id, 'name': nuevo_personaje.name, 'description': nuevo_personaje.description, 'temp_id': nuevo_personaje.temp_id, 'title': nuevo_personaje.title, 'partners': nuevo_personaje.partners, 'img': nuevo_personaje.img}}), 201
     except Exception as e:
         print(e)  
         return jsonify({'message': 'No fue posible crear el personaje'}), 500
@@ -94,7 +97,7 @@ def editar_personaje():
     personaje.temp_id = data['temp_id']
     personaje.title = data['title']
     personaje.partners = data['partners']
-
+    personaje.img = data['img']
     db.session.commit()
     return jsonify({'success': True, 'id': personaje.id})
 
@@ -113,6 +116,7 @@ def temporadas():
                 'cant_chap': temporada.cant_chapters,
                 'deaths': temporada.deaths,
                 'gossip': temporada.gossip,
+                'img': temporada.img
             }
             temporadas_data.append(temporada_info)
         return jsonify(temporadas_data)
@@ -128,5 +132,4 @@ if __name__ == '__main__':
         db.create_all()
     app.run(host='0.0.0.0', debug=True, port=port)
     print('started...')
-
 

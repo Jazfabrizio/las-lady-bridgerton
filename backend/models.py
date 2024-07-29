@@ -10,6 +10,7 @@ class Temporadas(db.Model):
     cant_chapters = db.Column(db.Integer, nullable=False, default=0)
     deaths = db.Column(db.Integer, default=0)
     gossip = db.Column(db.String(255))
+    img = db.Column(db.String(255), nullable=False)
 
 class Personajes(db.Model):
     __tablename__ = 'personajes'
@@ -19,4 +20,6 @@ class Personajes(db.Model):
     temp_id = db.Column(db.Integer, db.ForeignKey('temporadas.id'))
     title = db.Column(db.String(255))
     partners = db.Column(db.Integer)
+    img = db.Column(db.String(255), nullable=False)
+
 

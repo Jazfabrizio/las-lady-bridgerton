@@ -1,0 +1,98 @@
+body{
+  background-image: url("/IMG/pagweb.jpg");
+}
+header {
+  padding-top: 1.5em;
+  padding-bottom: 0.7;
+  display: block;
+  margin: 25px auto;
+  text-align: center;
+  font-size: large;
+  color: #7c388b;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing:auto;
+  font-weight: bolder;
+}
+
+.navbar{
+  border-color: #D8C8B9;
+  background-color:#D8C8B9;
+  border-radius: 2em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  text-align: center;
+}
+
+.navbar-nav{
+  text-align: center;
+}
+
+.nav-item{
+  list-style: none;
+  float: none;
+  color: #786BA8;
+  text-decoration: underline
+}
+
+.nav-link{
+  display: inline-block;
+  padding-right: 1em;
+  padding-left: 1em;
+  color: #786BA8;
+  text-decoration: underline;
+  font-family: 'Times New Roman', Times, serif;
+  font-size:large;
+  text-align: center;
+}
+
+.slick-slide {
+  padding: 10px;
+  margin: 20px;
+}
+
+.slick-slide img {
+  height: 300px;
+  width: 600px;
+  margin: 0 auto;
+}
+
+figcaption {
+  display:none; 
+  transition: all .5s;
+}
+
+figure:hover > figcaption {
+  display:block;
+  transition: all .5s;
+}
+
+.accordion-item{
+  background-color: #ede3d6;  
+  font-family: 'Times New Roman', Times, serif;
+
+}
+.acordion-header{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: large;
+  background-color: #ede3d6;
+  color: black;
+}
+.accordion-body{
+  font-family: 'Times New Roman', Times, serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  text-align: justify;
+  background-color:#ede3d6;
+
+}
+
+.accordion-button{
+  background-image: url("/IMG/pagweb.jpg");
+  background-color: #ede3d6;
+  border-color: #f7e9dc;
+  color: #7c388b;
+}

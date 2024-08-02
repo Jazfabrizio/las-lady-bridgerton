@@ -21,6 +21,77 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: chismes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.chismes (
+    id integer NOT NULL,
+    description character varying(255) NOT NULL,
+    temp_id integer
+);
+
+
+ALTER TABLE public.chismes OWNER TO postgres;
+
+--
+-- Name: chismes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.chismes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.chismes_id_seq OWNER TO postgres;
+
+--
+-- Name: chismes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.chismes_id_seq OWNED BY public.chismes.id;
+
+
+--
+-- Name: participantes_chisme; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.participantes_chisme (
+    id integer NOT NULL,
+    id_personaje integer,
+    id_chisme integer,
+    id_rol integer
+);
+
+
+ALTER TABLE public.participantes_chisme OWNER TO postgres;
+
+--
+-- Name: participantes_chisme_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.participantes_chisme_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.participantes_chisme_id_seq OWNER TO postgres;
+
+--
+-- Name: participantes_chisme_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.participantes_chisme_id_seq OWNED BY public.participantes_chisme.id;
+
+
+--
 -- Name: personajes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -57,6 +128,40 @@ ALTER TABLE public.personajes_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE public.personajes_id_seq OWNED BY public.personajes.id;
+
+
+--
+-- Name: roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.roles (
+    id integer NOT NULL,
+    description character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.roles OWNER TO postgres;
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.roles_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.roles_id_seq OWNER TO postgres;
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.roles_id_seq OWNED BY public.roles.id;
 
 
 --
@@ -98,6 +203,20 @@ ALTER SEQUENCE public.temporadas_id_seq OWNED BY public.temporadas.id;
 
 
 --
+-- Name: chismes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chismes ALTER COLUMN id SET DEFAULT nextval('public.chismes_id_seq'::regclass);
+
+
+--
+-- Name: participantes_chisme id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.participantes_chisme ALTER COLUMN id SET DEFAULT nextval('public.participantes_chisme_id_seq'::regclass);
+
+
+--
 -- Name: personajes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -105,10 +224,37 @@ ALTER TABLE ONLY public.personajes ALTER COLUMN id SET DEFAULT nextval('public.p
 
 
 --
+-- Name: roles id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
+
+
+--
 -- Name: temporadas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.temporadas ALTER COLUMN id SET DEFAULT nextval('public.temporadas_id_seq'::regclass);
+
+
+--
+-- Data for Name: chismes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.chismes (id, description, temp_id) FROM stdin;
+26	Se dice que Daphne Bridgerton tiene un romance secreto con un noble desconocido. Varios encuentros a escondidas y rumores de que el caballero es un rival en busca de su favor. ¡Qué misterio en los salones de Londres!	2
+\.
+
+
+--
+-- Data for Name: participantes_chisme; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.participantes_chisme (id, id_personaje, id_chisme, id_rol) FROM stdin;
+31	15	26	1
+32	15	26	3
+33	4	26	2
+\.
 
 
 --
@@ -131,6 +277,18 @@ COPY public.personajes (id, name, description, temp_id, title, partners, img) FR
 10	Penelope Featherington	Amiga cercana de las Bridgerton y miembro de los Featherington. Aunque inicialmente discreta, es inteligente y perspicaz, navegando por la sociedad londinense mientras lidia con secretos familiares y emociones no correspondidas.	1	Lady Whistledown	\N	https://i.pinimg.com/736x/6e/23/68/6e23683569022dcd3fba8db6ea9800f1.jpg
 11	Simon Basset	Es un noble con una reputación de soltero impenitente y un fuerte sentido de independencia. Decide fingir un compromiso con Daphne para evitar las presiones sociales y pronto desarrolla sentimientos genuinos por ella.	1	Duque de Hastings	\N	https://i.pinimg.com/564x/ae/8e/24/ae8e24106fdee0f221947e2e600ee20b.jpg
 12	Kate Sharma	Kate Sharma es una nueva en la sociedad londinense, conocida por su ingenio afilado y espíritu independiente. Se une a los Bridgerton enfrentando desafíos y capturando la atención de Anthony Bridgerton.	2	Vizcondesa de Bridgerton	\N	https://i.pinimg.com/564x/51/a8/00/51a800009ad174f81a9cc34e50bb0bb0.jpg
+25	Penelope Bridgerton		3	\N	\N	
+\.
+
+
+--
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.roles (id, description) FROM stdin;
+1	Chismoso
+2	Involucrado
+3	Vocero
 \.
 
 
@@ -146,10 +304,31 @@ COPY public.temporadas (id, description, cant_chapters, gossip, deaths, img) FRO
 
 
 --
+-- Name: chismes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.chismes_id_seq', 28, true);
+
+
+--
+-- Name: participantes_chisme_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.participantes_chisme_id_seq', 39, true);
+
+
+--
 -- Name: personajes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.personajes_id_seq', 21, true);
+SELECT pg_catalog.setval('public.personajes_id_seq', 25, true);
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.roles_id_seq', 3, true);
 
 
 --
@@ -157,6 +336,22 @@ SELECT pg_catalog.setval('public.personajes_id_seq', 21, true);
 --
 
 SELECT pg_catalog.setval('public.temporadas_id_seq', 1, false);
+
+
+--
+-- Name: chismes chismes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chismes
+    ADD CONSTRAINT chismes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: participantes_chisme participantes_chisme_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.participantes_chisme
+    ADD CONSTRAINT participantes_chisme_pkey PRIMARY KEY (id);
 
 
 --
@@ -168,11 +363,51 @@ ALTER TABLE ONLY public.personajes
 
 
 --
+-- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: temporadas temporadas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.temporadas
     ADD CONSTRAINT temporadas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: chismes chismes_temp_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chismes
+    ADD CONSTRAINT chismes_temp_id_fkey FOREIGN KEY (temp_id) REFERENCES public.temporadas(id);
+
+
+--
+-- Name: participantes_chisme participantes_chisme_id_chisme_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.participantes_chisme
+    ADD CONSTRAINT participantes_chisme_id_chisme_fkey FOREIGN KEY (id_chisme) REFERENCES public.chismes(id);
+
+
+--
+-- Name: participantes_chisme participantes_chisme_id_personaje_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.participantes_chisme
+    ADD CONSTRAINT participantes_chisme_id_personaje_fkey FOREIGN KEY (id_personaje) REFERENCES public.personajes(id);
+
+
+--
+-- Name: participantes_chisme participantes_chisme_id_rol_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.participantes_chisme
+    ADD CONSTRAINT participantes_chisme_id_rol_fkey FOREIGN KEY (id_rol) REFERENCES public.roles(id);
 
 
 --

@@ -21,5 +21,23 @@ class Personajes(db.Model):
     title = db.Column(db.String(255))
     partners = db.Column(db.Integer)
     img = db.Column(db.String(255), nullable=False)
+ 
+class Chismes(db.Model):
+    __tablename__ = 'chismes'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    description = db.Column(db.String(255), nullable=False)
+    temp_id = db.Column(db.Integer, db.ForeignKey('temporadas.id'))
+
+class Roles(db.Model):
+    __tablename__ = 'roles'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    description = db.Column(db.String(255), nullable=False)
+
+class Participantes_Chisme(db.Model):
+    __tablename__ = 'participantes_chisme'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id_personaje = db.Column(db.Integer, db.ForeignKey('personajes.id'))
+    id_chisme = db.Column(db.Integer, db.ForeignKey('chismes.id'))
+    id_rol = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
 

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="descripcion" content="Descubre todo sobre la serie de éxito Bridgerton de Netflix en nuestra página dedicada. Encuentra resúmenes de episodios, biografías de personajes, noticias, análisis y teorías. ¡Con nosotros!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="/css/crear_chisme.css">
+</head>
+<body>
+    <header role="banner">
+        <h1>Bridgerton</h1>
+    </header>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/personajes.html">Personajes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/temporadas.html">Temporadas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/whistledown.html">Whistledown</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <article class="container my-4">
+            <div class="row">
+                <div class="col-12 col-md-10 col-lg-6 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="formulario" onsubmit="agregarChisme(event)">
+                                <div class="input">
+                                    <label for="temp_id" class="form-label" id="top">Temporada de aparición:</label>
+                                    <select id="temp_id" class="form-control" name="temp_id" required>
+                                        <option value="1">Temporada 1</option>
+                                        <option value="2">Temporada 2</option>
+                                        <option value="3">Temporada 3</option>
+                                    </select>
+                                </div>
+                                <div class="input">
+                                    <label for="chismoso" class="form-label">Chismoso</label>
+                                    <input type="text" class="form-control" id="chismoso" required>
+                                </div>
+                                <div class="input">
+                                    <label for="vocero" class="form-label">Vocero</label>
+                                    <input type="text" class="form-control" id="vocero" required>
+                                </div>
+                                <div class="input">
+                                    <label for="involucrado1" class="form-label">Involucrado 1</label>
+                                    <input type="text" class="form-control" id="involucrado1" required>
+                                </div>
+                                <div class="input">
+                                    <label for="involucrado2" class="form-label">Involucrado 2 (opcional)</label>
+                                    <input type="text" class="form-control" id="involucrado2">
+                                </div>
+                                <div class="input">
+                                    <label for="description" class="form-label">Descripción del chisme:</label>
+                                    <textarea id="description" class="form-control" name="description" required></textarea>
+                                </div>
+                                <div class="margin-button">
+                                    <button type="submit">Publicar</button>
+                                </div>
+                            </form>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        async function agregarChisme(event) {
+            event.preventDefault();
+
+            const description = document.getElementById("description").value;
+            const temp_id = document.getElementById("temp_id").value;
+            const chismoso = document.getElementById("chismoso").value;
+            const vocero = document.getElementById("vocero").value;
+            const involucrado1 = document.getElementById("involucrado1").value;
+            const involucrado2 = document.getElementById("involucrado2").value;
+
+            const personajes = [
+                { name: chismoso, rol: "Chismoso" },
+                { name: vocero, rol: "Vocero" },
+                { name: involucrado1, rol: "Involucrado" }
+            ];
+
+            if (involucrado2) {
+                personajes.push({ name: involucrado2, rol: "Involucrado" });
+            }
+
+            try {
+                const response = await fetch("http://localhost:5000/chismes", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        description,
+                        temp_id,
+                        personajes
+                    })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Chisme agregado con éxito');
+                    document.getElementById('formulario').reset();
+                    window.location.href = "http://localhost:8000/whistledown.html";
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>
+

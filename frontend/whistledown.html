@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="descripcion" content="Descubre todo sobre la serie de éxito Bridgerton de Netflix en nuestra página dedicada. Encuentra resúmenes de episodios, biografías de personajes, noticias, análisis y teorías. ¡Con nosotros!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/whistledown.css">
+</head>
+<body>
+    <header role="banner">
+        <h1>Bridgerton</h1>
+    </header>
+    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="personajes.html">Personajes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="temporadas.html">Temporadas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="whistledown.html">Whistledown</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+ 
+    <h3 class="whistledown">Seccion lady whistledown</h3>
+
+    <div class="container">
+        <div class="row g-4" id="Chismes">
+        </div>
+    </div>
+    <div class="margin-button">
+        <a href="/crear_chisme" class="boton_agregar">Agregar un nuevo chisme</a>
+    </div>
+
+    <script>
+        function response_recieved(response) {
+            return response.json();
+        }
+
+        function parse_data(content) {
+            console.log(content);
+            const contenedorChismes = document.getElementById("Chismes");
+            
+            content.sort((a, b) => a.id - b.id);
+            for (const chisme of content) {
+                const item = document.createElement("div");
+                item.setAttribute("class", "col-6");
+
+                const card = document.createElement("a");
+                card.setAttribute("class", "card text-decoration-none");
+                card.setAttribute("href", `/chisme?id=${chisme.id}`);
+
+                const card_body = document.createElement("div");
+                card_body.setAttribute("class", "card-body");
+
+                const description = document.createElement("p");
+                description.textContent = `Descripción: ${chisme.description}`;
+
+                const temporada = document.createElement("p");
+                temporada.textContent = `Temporada: ${chisme.temp_id}`;
+                temporada.setAttribute("class", "top")
+
+                const participantes = document.createElement("div");
+                participantes.setAttribute("class", "participantes");
+
+                for (const participante of chisme.participantes) {
+                    const participanteElem = document.createElement("p");
+                    participanteElem.textContent = `${participante.nombre_personaje}, Rol: ${participante.rol}`;
+                    participantes.append(participanteElem);
+                }
+
+                card_body.append(temporada, participantes, description);
+                card.append(card_body);
+                item.append(card);
+                contenedorChismes.append(item);
+            }
+        }
+
+        function request_error(error) {
+            console.error("Error:", error);
+        }
+
+        fetch("http://localhost:5000/chismes")
+            .then(response_recieved)
+            .then(parse_data)
+            .catch(request_error);
+    </script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/slick/slick.min.js"></script>
+    <script src="/js/java_script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

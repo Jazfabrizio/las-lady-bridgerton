@@ -1,7 +1,5 @@
 body{
   background-image: url("/IMG/pagweb.jpg");
-  background-color: #E8D8C9;
-  display: block;
 }
 
 header {
@@ -43,15 +41,65 @@ header {
   font-size-adjust: auto;
 }
 
+h2{
+  padding-top: 1em;
+  padding-bottom: 0.7em;
+  display: block;
+  margin: 10px;
+  text-align: center;
+  color: #7c388b;
+  font-family: "Playfair Display", serif;
+  font-weight: bolder;
+}
 
-nav[role="navigation"]{
-  figcaption {
+figcaption {
     display:none; 
     transition: all .5s;
+    text-align: justify;
   }
   
   figure:hover > figcaption {
-    display:block;
+    display: block;
     transition: all .5s;
   }
+
+img {
+  padding: 0.5em;
+  margin: 1em;
+  height: 300px;
+  width: 700px;
+  margin: 0 auto;
+  border-radius: 1em;
+  border-width: 20px;
+  border-color: #5e0173;
+}
+
+#card-body {
+  text-align: center;
+}
+.margin-button{
+  margin: 2em;
+}
+.boton_agregar {
+  color: beige;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border-radius: 0.3em;
+  background-color: #786BA8;
+  text-decoration: underline;
+  font-family: 'Times New Roman', Times, serif;
+  font-size:large;
+  text-align: center;
+  font-size-adjust: auto;
+  border: none;
+  margin: 2em;
+}
+
+.card{
+  background: none;
+  text-align: center;
+  background-image: url("https://i.pinimg.com/564x/5e/a0/a5/5ea0a59776c4c4f7f1ce01ba6531a6f3.jpg");
+  border:none;
 }

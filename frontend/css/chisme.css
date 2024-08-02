@@ -1,0 +1,131 @@
+body{
+    background-image: url("/IMG/pagweb.jpg");
+
+  }
+  
+  header {
+    padding-top: 1.5em;
+    padding-bottom: 0.7;
+    display: block;
+    margin: 25px auto;
+    text-align: center;
+    font-size: large;
+    color: #7c388b;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing:auto;
+    font-weight: bolder;
+  }
+  
+.navbar{
+    border-color: #D8C8B9;
+    background-color:#D8C8B9;
+    border-radius: 2em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    text-align: center;
+  }
+  
+.nav-item{
+    list-style: none;
+    float: none;
+  }
+  
+.nav-link{
+    display: inline-block;
+    padding-right: 1em;
+    padding-left: 1em;
+    color: #786BA8;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:large;
+    text-align: center;
+    font-size-adjust: auto;
+  }
+  
+h2{
+    padding-top: 1em;
+    padding-bottom: 0.7em;
+    display: block;
+    margin: 10px;
+    text-align: center;
+    color: #7c388b;
+    font-family: "Playfair Display", serif;
+    font-weight: bolder;
+  }
+
+#container {
+    margin: 2em;
+    padding: 1em;
+}
+
+img {
+    padding: 1em;
+    border-radius: 2em;
+}
+
+.title {
+  text-align: justify;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+#btnEdit {
+    color: beige;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    border-radius: 0.3em;
+    background-color: #786BA8;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:large;
+    text-align: center;
+    font-size-adjust: auto;
+}
+
+button {
+    color: beige;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+    border-radius: 0.3em;
+    background-color: #440101;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:large;
+    text-align: center;
+    font-size-adjust: auto;
+    border: none;
+}
+
+.card-footer {
+    margin: auto;
+    padding: 1em;
+}
+.card-body {
+  text-align: center;
+  align-items: center;
+}
+
+.col-6 {
+  align-items: center;
+  margin-top: 2em;
+  background: none;
+  text-align: center;
+  background-image: url("/IMG/pagweb1.jpg");
+  border:none;
+  background-size: 100% 100%;
+}
+
+p{
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  font-size-adjust: auto;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+}
+
+.top{
+  margin-top: 2em;
+}

@@ -1,0 +1,112 @@
+body{
+    background-image: url("/IMG/pagweb.jpg");
+
+  }
+  
+header {
+  padding-top: 1.5em;
+  padding-bottom: 0.7;
+  display: block;
+  margin: 25px auto;
+  text-align: center;
+  font-size: large;
+  color: #7c388b;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing:auto;
+  font-weight: bolder;
+}
+
+.navbar{
+    border-color: #D8C8B9;
+    background-color:#D8C8B9;
+    border-radius: 2em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    text-align: center;
+  }
+  
+.nav-item{
+    list-style: none;
+    float: none;
+  }
+  
+.nav-link{
+    display: inline-block;
+    padding-right: 1em;
+    padding-left: 1em;
+    color: #786BA8;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:large;
+    text-align: center;
+    font-size-adjust: auto;
+  }
+  
+
+.card {
+    background-image: url("/IMG/pagweb2.jpg");
+    background-size: 100% 100%;
+}
+
+form div {
+    display: block;
+}
+
+#top {
+  margin-top: 8em;
+  margin-bottom: 0.2;
+}
+
+form div select{
+  display: inline-block;
+  border-radius: 0.5em;
+  border: none;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+  max-width: 450px;
+  margin-left: 1.8em;
+}
+
+form input {
+  border-radius: 0.7em;
+  border: none;
+  max-width: 450px;
+  margin-left: 1.8em;
+}
+
+form textarea{
+  border-radius: 0.7em;
+  border: none;
+  max-width: 450px;
+  margin-left: 1.8em;
+}
+
+label {
+  font-family:'Times New Roman', Times, serif;
+  font-optical-sizing:auto;
+  padding: 0.2em;
+  text-align: start;
+  margin-left: 1.8em;
+  font-weight: bold;
+}
+
+.margin-button{
+  margin: 1em;
+}
+
+button {
+    color: beige;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-radius: 0.3em;
+    background-color: #786BA8;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:large;
+    text-align: center;
+    font-size-adjust: auto;
+    border: none;
+    margin-left: 42%;
+}
